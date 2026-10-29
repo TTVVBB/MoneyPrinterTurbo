@@ -1,0 +1,25 @@
+name: CreatorSafe safety smoke
+
+on:
+  pull_request:
+  push:
+    branches:
+      - creatorsafe/shorts-mvp
+
+permissions:
+  contents: read
+
+jobs:
+  safety:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Run policy and engine-contract tests without providers or credentials
+        run: python -m unittest discover -s test/services -p test_creatorsafe.py -v

@@ -1,0 +1,51 @@
+{
+  "title": "The seed ledger",
+  "language": "en",
+  "fiction": true,
+  "references": [],
+  "original_contribution": "Replace with your specific creative contribution and edit rationale.",
+  "story": {
+    "hook": "Mara almost threw away her smallest seed.",
+    "setup": "Her balcony pots had failed all spring, so she began a notebook recording each watering.",
+    "turn": "One quiet morning, the neglected pot sprouted while the others stood empty.",
+    "payoff": "She stopped guessing, changed one habit at a time, and finally learned what her garden needed."
+  },
+  "assets": [
+    {
+      "kind": "footage",
+      "path": "clip.mp4",
+      "sha256": "REPLACE_WITH_LOWERCASE_SHA256",
+      "source_url": "REPLACE_WITH_ACTUAL_SOURCE_PAGE",
+      "creator": "REPLACE_WITH_CREATOR",
+      "license_name": "REPLACE_WITH_LICENSE_NAME",
+      "license_url": "REPLACE_WITH_LICENSE_URL",
+      "acquired_at": "2026-10-30",
+      "evidence_path": "footage-license.txt",
+      "commercial_use": false,
+      "derivatives": false,
+      "rights_reviewed": false,
+      "rights_reviewed_by": "REPLACE_WITH_HUMAN_REVIEWER",
+      "rights_notes": "REPLACE_WITH_GRANT_SCOPE_AND_RELEASE_REVIEW",
+      "attribution_required": true,
+      "attribution": "REPLACE_WITH_REQUIRED_CREDIT"
+    },
+    {
+      "kind": "narration",
+      "path": "voice.wav",
+      "sha256": "REPLACE_WITH_LOWERCASE_SHA256",
+      "source_url": "REPLACE_WITH_NARRATION_SOURCE_OR_OWNERSHIP_RECORD",
+      "creator": "REPLACE_WITH_NARRATOR",
+      "license_name": "REPLACE_WITH_LICENSE_OR_OWNED_WORK",
+      "license_url": "REPLACE_WITH_GRANT_OR_OWNERSHIP_RECORD",
+      "acquired_at": "2026-10-30",
+      "evidence_path": "narration-grant.txt",
+      "commercial_use": false,
+      "derivatives": false,
+      "rights_reviewed": false,
+      "rights_reviewed_by": "REPLACE_WITH_HUMAN_REVIEWER",
+      "rights_notes": "REPLACE_WITH_NARRATOR_CONSENT_AND_GRANT_SCOPE",
+      "attribution_required": true,
+      "attribution": "REPLACE_WITH_REQUIRED_CREDIT"
+    }
+  ]
+}

@@ -156,7 +156,8 @@ class UploadPostService:
 
     @property
     def auto_upload(self) -> bool:
-        return config.app.get("upload_post_auto_upload", False)
+        # CreatorSafe: old configuration must never enable automatic publishing.
+        return False
 
     @property
     def youtube_privacy_status(self) -> str:
@@ -173,6 +174,21 @@ class UploadPostService:
         return bool(self.api_key and self.username and self.enabled)
 
     def upload_video(
+        self,
+        video_path: str,
+        title: str,
+        platforms: Optional[list] = None,
+        privacy_level: str = "PUBLIC_TO_EVERYONE",
+        youtube_extra: Optional[dict] = None,
+        on_background_start: Callable[[str], None] | None = None,
+    ) -> dict:
+        """Publishing is disabled in the CreatorSafe MVP, including private uploads."""
+        return {
+            "success": False,
+            "error": "CreatorSafe publishing disabled; approve and export for manual upload",
+        }
+
+    def _upload_video_legacy(
         self,
         video_path: str,
         title: str,
@@ -409,3 +425,4 @@ def cross_post_video(
         youtube_extra=youtube_extra,
         on_background_start=on_background_start,
     )
+
