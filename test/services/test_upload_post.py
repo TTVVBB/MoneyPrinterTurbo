@@ -51,6 +51,13 @@ def _has_key(data, key):
 
 
 class TestUploadPostService(unittest.TestCase):
+    def setUp(self):
+        # Retain protocol regression coverage of the isolated legacy helper.
+        # Production upload_video is disabled and tested in test_creatorsafe.py.
+        upload = patch.object(UploadPostService, "upload_video", UploadPostService._upload_video_legacy)
+        upload.start()
+        self.addCleanup(upload.stop)
+
     @patch(
         "app.services.upload_post.config.app",
         {**_CONFIG_BASE, "upload_post_enabled": False},
@@ -342,6 +349,8 @@ class TestUploadPostService(unittest.TestCase):
 
 
 class TestUploadPostYouTubePayload(unittest.TestCase):
+    setUp = TestUploadPostService.setUp
+
     @patch("app.services.upload_post.config.app", _CONFIG_BASE)
     @patch("app.services.upload_post.os.path.exists", return_value=True)
     @patch("builtins.open", mock_open(read_data=b"fake"))
@@ -455,7 +464,7 @@ class TestUploadPostServiceDynamicConfig(unittest.TestCase):
             test_app_config["upload_post_platforms"] = ["tiktok", "instagram"]
             
             self.assertTrue(service.enabled)
-            self.assertTrue(service.auto_upload)
+            self.assertFalse(service.auto_upload)
             self.assertEqual(service.api_key, "test-key")
             self.assertTrue(service.is_configured())
             self.assertIn("instagram", service.platforms)
@@ -463,3 +472,4 @@ class TestUploadPostServiceDynamicConfig(unittest.TestCase):
             test_app_config["upload_post_enabled"] = False
             self.assertFalse(service.enabled)
             self.assertFalse(service.is_configured())
+
