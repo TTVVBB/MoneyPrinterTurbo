@@ -1907,15 +1907,18 @@ def render_image_zoom_video(
     temp_path = ""
     try:
         # 只有放大模式改变画面尺寸，静止模式保留原始构图及透明背景处理。
-        image_clip = (
-            clip.resized(lambda t: 1 + (clip_duration * 0.03) * (t / clip.duration))
-            if motion == ImageMotion.zoom
-            else clip
-        )
+        if motion == ImageMotion.zoom:
+            image_clip = clip.resized(lambda t: 1 + (clip_duration * 0.03) * (t / clip.duration))
+        elif motion == ImageMotion.zoom_out:
+            image_clip = clip.resized(lambda t: 1 + (clip_duration * 0.03) * (1 - t / clip.duration))
+        else:
+            image_clip = clip
 
         # Optionally, create a composite video clip containing the zoomed clip.
         # This is useful if you want to add other elements to the video.
-        final_clip = CompositeVideoClip([image_clip], bg_color=(0, 0, 0))
+        # Keep the original canvas fixed: zoom-out starts cropped and finishes
+        # at the original image size, without exposing a growing black border.
+        final_clip = CompositeVideoClip([image_clip], size=clip.size, bg_color=(0, 0, 0))
         try:
             # The duration changes the rendered content, so it must be part of
             # the output identity. Different tasks may render the same image

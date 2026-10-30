@@ -113,3 +113,23 @@ separately. The repository CI also runs the complete dependency-backed test suit
 
 Next increments should add a real licensed-media integration fixture, perceptual/semantic
 duplicate signals and a review UI. Expand automation only after the manual MVP is reviewed.
+
+## Horror production reference
+
+`creatorsafe-voice-profile.json` records the user's creative choice: Christopher,
+natural pitch, restrained horror delivery and the approved slower pace. It is a
+creative reference for licensed narration, not an activation of unattended TTS.
+The Edge preview source has not been cleared for commercial redistribution. A
+licensed source, such as paid Azure Speech under its applicable terms, is required
+before a production package can be treated as cleared for commercial publication.
+
+The native image renderer now accepts explicit `image_motion="zoom_out"` as well
+as `zoom` and `static`. Its canvas remains fixed while the source recedes, so
+zoom-out does not reveal a black border. Existing requests still default to zoom-in.
+An eight-second scene schedule can alternate `zoom` and `zoom_out`; the renderer
+and final video assembly remain the existing MoneyPrinterTurbo engine.
+
+Local validation includes 11 focused tests: nine workflow safety tests and two
+motion tests, including an actual encoded clip that checks the canvas and motion
+direction. Synthetic-media review renders exercise the native rendering components;
+they do not constitute approval of voice licensing or public publication.

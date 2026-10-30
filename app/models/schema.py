@@ -56,6 +56,7 @@ class VideoFitMode(str, Enum):
 class ImageMotion(str, Enum):
     static = "static"
     zoom = "zoom"
+    zoom_out = "zoom_out"
 
 
 SubtitleDisplayMode = Literal["sentence", "word_by_word"]
